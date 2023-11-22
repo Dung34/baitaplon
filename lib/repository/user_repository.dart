@@ -1,3 +1,6 @@
+import 'package:btl/data/login_request.dart';
+import 'package:btl/data/login_response.dart';
+
 abstract class UserRepository {
-  Future<int> LoginRequest(String username, String password);
+  Future<LoginResponse> loginRequest(LoginRequest loginRequest);
 }

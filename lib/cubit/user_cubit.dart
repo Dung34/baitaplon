@@ -1,16 +1,26 @@
 import 'package:bloc/bloc.dart';
+import 'package:btl/data/login_request.dart';
 import 'package:btl/repository/user_repo_impl.dart';
+import 'package:btl/repository/user_repository.dart';
 
 part 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
-  final UserRepositoryImplement userRepository;
-  UserCubit(this.userRepository) : super(UserInitial());
-  loginRequest(String username, String password) async {
-    final int response = await userRepository.LoginRequest(username, password);
-    // ignore: unrelated_type_equality_checks
-    if (response == 1) {
-      emit(LoginSuccess());
+  UserRepository userRepository = UserRepositoryImplement();
+  UserCubit() : super(UserInitial());
+  void loginRequest(LoginRequest loginRequest) async {
+    final response = await userRepository.loginRequest(loginRequest);
+    if (response.code == "LOGIN000") {
+      emit(LoginAdminSuccess());
+    }
+    if (response.code == "LOGIN001") {
+      emit(LoginUserSuccess());
+    }
+    if (response.code == "LOGIN002") {
+      emit(LoginNotPermission());
+    }
+    if (response.code == "LOGIN003") {
+      emit(LoginFailed());
     } else {
       emit(LoginFailed());
     }

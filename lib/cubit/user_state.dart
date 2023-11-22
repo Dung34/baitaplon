@@ -4,6 +4,12 @@ abstract class UserState {}
 
 final class UserInitial extends UserState {}
 
-class LoginSuccess extends UserState {}
+final class LoginAdminSuccess extends UserState {}
 
-class LoginFailed extends UserState {}
+final class LoginUserSuccess extends UserState {}
+
+final class LoginNotPermission extends UserState {}
+
+final class LoginWrong extends UserState {}
+
+final class LoginFailed extends UserState {}
