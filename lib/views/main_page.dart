@@ -22,7 +22,11 @@ class _MainPageState extends State<MainPage> {
           child: Center(
         child: Column(
           children: [
-            ElevatedButton(onPressed: () {}, child: const Text("Nộp tiền")),
+            ElevatedButton(
+                onPressed: () {},
+                child: const Text("Nộp tiền"),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF07AB5C))),
             ElevatedButton(onPressed: () {}, child: const Text("Xem thong tin"))
           ],
         ),
